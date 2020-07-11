@@ -2,11 +2,9 @@ import { Component, Entity, System } from "../index.ts";
 
 import { v4 } from "https://deno.land/std@0.58.0/uuid/mod.ts";
 
-export type ComponentStore<T extends Component> = Map<string, Set<T>>;
-
 export class World {
   static RUN_INTERVAL: number = 500;
-  private components: ComponentStore<Component>;
+  private components: Map<string, Set<Component>>;
   private entities: Set<Entity>;
   private loop: number;
   private started: boolean;

@@ -1,4 +1,4 @@
-import { Component, ComponentStore } from "../index.ts";
+import { Component } from "../index.ts";
 import { v4 } from "https://deno.land/std@0.58.0/uuid/mod.ts";
 
 export abstract class System {

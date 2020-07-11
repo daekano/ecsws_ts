@@ -1,4 +1,4 @@
-import { ComponentStore, System } from "../../lib/index.ts";
+import { System } from "../../lib/index.ts";
 import { MassComponent } from "../index.ts";
 
 export class ErosionSystem extends System {
