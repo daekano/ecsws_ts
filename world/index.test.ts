@@ -9,7 +9,7 @@ Deno.test("ErosionSystem reduces mass", () => {
   const componentStore: ComponentStore<MassComponent> = new Map();
   componentStore.set("mass", new Set([massComponent]));
 
-  erosionSystem.run(componentStore);
+  erosionSystem.tick(componentStore.get(erosionSystem.aspect) ?? new Set());
 
   assertEquals(massComponent.mass, 99.9);
 });

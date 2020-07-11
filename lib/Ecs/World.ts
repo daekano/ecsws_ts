@@ -22,13 +22,6 @@ export class World {
     this.id = v4.generate();
   }
 
-  createEntity(): Entity {
-    const entity = v4.generate();
-    this.entities.add(entity);
-
-    return entity;
-  }
-
   createComponent(component: Component) {
     if (!this.components.has(component.type)) {
       this.components.set(component.type, new Set());
@@ -42,12 +35,29 @@ export class World {
     });
   }
 
+  createEntity(): Entity {
+    const entity = v4.generate();
+    this.entities.add(entity);
+
+    return entity;
+  }
+
+  createSystem(system: System) {
+    this.systems.add(system);
+  }
+
+  createSystems(systems: System[]) {
+    systems.forEach((system) => {
+      this.systems.add(system);
+    });
+  }
+
   getComponents() {
     return new Map(this.components);
   }
 
   getComponentsByType(componentType: string) {
-    return this.components.get(componentType);
+    return this.components.get(componentType) ?? new Set();
   }
 
   getComponentCounts() {
@@ -67,17 +77,7 @@ export class World {
     return this.entities.size;
   }
 
-  createSystem(system: System) {
-    this.systems.add(system);
-  }
-
-  createSystems(systems: System[]) {
-    systems.forEach((system) => {
-      this.systems.add(system);
-    });
-  }
-
-  run() {
+  start() {
     if (this.started) {
       return;
     }
@@ -85,7 +85,7 @@ export class World {
     this.started = true;
     this.loop = setInterval(() => {
       this.systems.forEach((system) => {
-        system.run(this.components);
+        system.tick(this.getComponentsByType(system.aspect));
       });
     }, World.RUN_INTERVAL);
   }

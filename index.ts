@@ -31,5 +31,5 @@ world.createComponents([
 ]);
 
 world.createSystem(new ErosionSystem(1));
-world.run();
+world.start();
 renderWorld(world);
