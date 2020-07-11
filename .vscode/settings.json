@@ -1,0 +1,4 @@
+{
+  "deno.autoFmtOnSave": true,
+  "deno.enable": true
+}
