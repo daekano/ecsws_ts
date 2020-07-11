@@ -8,10 +8,7 @@ export enum Elements {
 }
 
 export class ElementalComponent extends Component {
-  readonly element: Elements;
-  constructor(entity: Entity, element: Elements) {
+  constructor(entity: Entity, readonly element: Elements) {
     super("elemental", entity);
-
-    this.element = element;
   }
 }
