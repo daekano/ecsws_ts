@@ -75,6 +75,10 @@ export class World {
     return this.entities.size;
   }
 
+  getSystemCount() {
+    return this.systems.size;
+  }
+
   start() {
     if (this.started) {
       return;
