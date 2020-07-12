@@ -8,7 +8,7 @@ export class ErosionSystem extends System {
     super();
   }
 
-  tick(components: Set<MassComponent>): void {
+  tick(components: Set<MassComponent>) {
     components?.forEach((component) => {
       component.mass =
         component.mass -
